@@ -1,5 +1,6 @@
 require 'yaml'
 require 'carmen'
+require 'active_model'
 
 module LocalPostal
   autoload :Address, 'local_postal/address'

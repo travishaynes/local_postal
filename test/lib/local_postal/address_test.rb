@@ -1,19 +1,6 @@
 require 'test_helper'
 
 class LocalPostal::AddressTest < Minitest::Test
-  def test_fields_are_assigned_getters_and_setters
-    address = LocalPostal::Address.new
-
-    LocalPostal::Address.fields.each do |field|
-      assert address.respond_to?(:"#{field}"), "#{field} should have a getter"
-      assert address.respond_to?(:"#{field}="), "#{field} should have a setter"
-    end
-  end
-
-  def test_initializer_raises_argument_error_for_invalid_attributes
-    assert_raises(ArgumentError) { LocalPostal::Address.new(x: 'unknown') }
-  end
-
   def test_initializer_sets_attributes
     address = LocalPostal::Address.new(name: 'Travis')
 
@@ -25,21 +12,6 @@ class LocalPostal::AddressTest < Minitest::Test
     address.name = 'John'
 
     assert_equal 'John', address.name
-  end
-
-  def test_attributes_has_is_accessible
-    address = LocalPostal::Address.new
-
-    assert_kind_of Hash, address.attributes
-  end
-
-  def test_attributes_always_have_all_fields
-    address = LocalPostal::Address.new
-    attributes = address.attributes
-
-    LocalPostal::Address.fields.each do |field|
-      assert attributes.key?(field), "#{field} is missing from attributes"
-    end
   end
 
   def test_country_code_when_country_is_a_full_name

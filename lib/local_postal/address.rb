@@ -1,43 +1,9 @@
 class LocalPostal::Address
-  attr_reader :attributes
+  include ActiveModel::Model
 
-  # All of the address fields that are available.
-  #
-  # @return [Array] Address field names as Symbols.
-  def self.fields
-    %i[ name department company street_address secondary_address city region
-        postal_code country ]
-  end
-
-  # Constructs an empty set of attributes that contains all the address fields
-  # with nil values.
-  #
-  # @return [Hash] Address attributes with nil values.
-  def self.empty_attributes
-    fields.inject({}) {|r, (key, value)| r[key] = nil; r }
-  end
-
-  # Assign getters and setters for each of the address fields that will use the
-  # attributes hash to store their values.
-  fields.each do |field|
-    define_method(:"#{field}") { attributes[field] }
-    define_method(:"#{field}=") {|value| attributes[field] = value }
-  end
-
-  # Constructs a new LocalPostal::Address with the supplied attributes assigned.
-  #
-  # @param [Hash] attributes The initial address attributes to assign.
-  # @return [LocalPostal::Address] A new address.
-  # @raise [ArgumentError] If the attributes contain any invalid field names.
-  def initialize(attributes={})
-    attributes.each do |k, _|
-      next if self.class.fields.include?("#{k}".to_sym)
-
-      fail ArgumentError, "invalid attribute: #{k.inspect}", caller
-    end
-
-    @attributes = self.class.empty_attributes.merge(attributes)
-  end
+  attr_accessor :name, :department, :company
+  attr_accessor :street_address, :secondary_address, :city, :region
+  attr_accessor :postal_code, :country
 
   # The 2-character ISO 3166 country code for this address.
   #
