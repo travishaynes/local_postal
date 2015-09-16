@@ -1,0 +1,57 @@
+- format: "%{city}, %{region}  %{postal_code}"
+  country_codes: ["CN", "IN"]
+
+- format: "%{postal_code} %{city}-%{region}"
+  country_codes: ["BR"]
+
+- format: "%{postal_code} %{city}, %{region}"
+  country_codes: ["MX"]
+
+- format: "%{postal_code} %{city} (%{region})"
+  country_codes: ["IT"]
+
+- format: "%{postal_code} %{city}-(%{region})"
+  country_codes: ["BY"]
+
+- format: "%{city} %{region}  %{postal_code}"
+  country_codes: ["US", "CA", "AU"]
+
+- format: "%{postal_code} %{city}"
+  country_codes: [
+    "AM", "AT", "AZ", "BA", "BE", "BG", "CH", "CY", "DE", "DK", "EC", "EE",
+    "ES", "FI", "FR", "GE", "GR", "HR", "IL", "IS", "KW", "LU", "MD", "ME",
+    "MK", "NO", "OM", "PL", "PT", "RO", "RS", "SE", "SY", "TR"
+  ]
+
+- format: "%{postal_code}  %{city}"
+  country_codes: ["NL"]
+
+- format: "%{city}, %{region}"
+  country_codes: ["IE"]
+
+- format: "%{city}  %{postal_code}"
+  country_codes: ["GB", "IR", "JO", "LB", "NZ", "RU", "SA", "UA"]
+
+- format: "%{city}"
+  country_codes: ["AL", "HK", "IQ", "QA", "YE"]
+
+- format: "%{postal_code}\n%{city}"
+  country_codes: ["AE"]
+
+- format: "%{city}, %{region}\n%{postal_code}"
+  country_codes: ["JP"]
+
+- format: "%{city}\n%{postal_code}"
+  country_codes: ["EG", "HU", "IM", "KZ", "ZA"]
+
+- format: "%{city}, LV-%{postal_code}"
+  country_codes: ["LV"]
+
+- format: "LT-%{postal_code} %{city}"
+  country_codes: ["LT"]
+
+- format: "SI-%{postal_code} %{city}"
+  country_codes: ["SI"]
+
+- format: "%{postal_code} %{region}\n%{city}"
+  country_codes: ["CZ"]
