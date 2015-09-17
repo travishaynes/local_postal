@@ -67,6 +67,19 @@ class LocalPostal::AddressTest < Minitest::Test
     assert_equal address.country, lines[3]
   end
 
+  def test_validates_required_fields
+    address = fake_address
+
+    assert address.valid?
+
+    address.name = nil
+    address.street_address = nil
+
+    refute address.valid?
+    assert_includes address.errors.full_messages, 'Name is required'
+    assert_includes address.errors.full_messages, 'Street address is required'
+  end
+
   private
 
   def fake_address

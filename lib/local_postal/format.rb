@@ -50,7 +50,13 @@ class LocalPostal::Format
   # @param [Hash] values The address' field values.
   # @return [String] The address properly formatted for its country.
   def apply(values)
-    formatted_string % values
+    values = values.map do |key, value|
+      key = key.upcase if uppercase_fields.include?(key)
+
+      [key, value]
+    end
+
+    formatted_string % values.to_h
   end
 
   # Converts the format provided in the JSON files into a valid Ruby formatted
