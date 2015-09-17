@@ -26,7 +26,7 @@ class LocalPostal::Address
   # @return [Array] The address lines.
   def lines
     address = format.apply(formatting_values)
-    address.split("\n").reject {|line| line.strip.empty? } + [country]
+    address.split("\n").reject {|line| line.strip.empty? } + [country.upcase]
   end
 
   # Sets the country and automatically assigns the correct format for that it

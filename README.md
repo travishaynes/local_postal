@@ -1,6 +1,6 @@
 # LocalPostal
 
-TODO: describe the gem
+Formats addresses using the postal rules of the country it belongs to.
 
 ## Installation
 
@@ -20,7 +20,58 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The best way to describe how to use this gem is by giving a couple of examples.
+
+```ruby
+address = LocalPostal::Address.new(
+  name: 'Sherlock Holmes',
+  company: '',
+  street_address: '221B Baker Street',
+  secondary_address: '',
+  city: 'London',
+  region: 'England',
+  postal_code: 'NW1 6XE',
+  country: 'United Kingdom'
+)
+
+puts address.lines
+```
+
+The above will output the following:
+
+    Sherlock Holmes
+    221B Baker Street
+    LONDON
+    England
+    NW1 6XE
+    UNITED KINGDOM
+
+
+Here's another example for the US.
+
+```ruby
+address = LocalPostal::Address.new(
+  name: 'Elwood Blues',
+  company: 'The Blues Brothers',
+  street_address: '1060 West Addison Street',
+  secondary_address: '',
+  city: 'Chicago',
+  region: 'IL',
+  postal_code: '60620',
+  country: 'United States'
+)
+
+puts address.lines
+```
+
+Which will output:
+
+    Elwood Blues
+    The Blues Brothers
+    1060 West Addison Street
+    CHICAGO, IL 60620
+    UNITED STATES
+
 
 ## Development
 
