@@ -46,12 +46,13 @@ class LocalPostal::AddressTest < Minitest::Test
   def test_lines_when_all_fields_are_present
     address = fake_address
     lines = address.lines
+    city_line = "#{address.city}, #{address.region} #{address.postal_code}"
 
     assert_equal address.name, lines[0]
     assert_equal address.company, lines[1]
     assert_equal address.street_address, lines[2]
     assert_equal address.secondary_address, lines[3]
-    assert_equal "#{address.city}, #{address.region} #{address.postal_code}", lines[4]
+    assert_equal city_line.upcase, lines[4]
     assert_equal address.country, lines[5]
   end
 
@@ -60,10 +61,11 @@ class LocalPostal::AddressTest < Minitest::Test
     address.company = nil
     address.secondary_address = ''
     lines = address.lines
+    city_line = "#{address.city}, #{address.region} #{address.postal_code}"
 
     assert_equal address.name, lines[0]
     assert_equal address.street_address, lines[1]
-    assert_equal "#{address.city}, #{address.region} #{address.postal_code}", lines[2]
+    assert_equal city_line.upcase, lines[2]
     assert_equal address.country, lines[3]
   end
 

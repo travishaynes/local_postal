@@ -52,6 +52,7 @@ class LocalPostal::Format
   def apply(values)
     values = values.map do |key, value|
       key = key.upcase if uppercase_fields.include?(key)
+      value = "#{value}".upcase if uppercase_fields.include?("#{key}")
 
       [key, value]
     end
