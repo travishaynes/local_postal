@@ -26,7 +26,7 @@ class LocalPostal::Format
     new(parsed_json)
   end
 
-  # Constructs an instance of LocalPostsal::Format by looking up the supplied
+  # Constructs an instance of LocalPostal::Format by looking up the supplied
   # country code in config/formats/*.json.
   #
   # @param [String] code The 2-character country code.
