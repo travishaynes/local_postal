@@ -40,6 +40,6 @@ class LocalPostal::FormatTest < Minitest::Test
   private
 
   def config_files
-    Dir[File.join(LocalPostal::Config.root, 'formats', '*.json')]
+    Dir[File.join(LocalPostal.root, 'config', 'formats', '*.json')]
   end
 end

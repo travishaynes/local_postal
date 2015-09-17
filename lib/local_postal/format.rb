@@ -38,7 +38,7 @@ class LocalPostal::Format
 
     fail ArgumentError, "#{code} is an invalid code", caller if code.length != 2
 
-    path = File.join(LocalPostal::Config.root, 'formats', "#{code}.json")
+    path = File.join(LocalPostal.root, 'config', 'formats', "#{code}.json")
 
     fail ArgumentError, "#{code} unsupported", caller unless File.file?(path)
 

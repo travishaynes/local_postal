@@ -2,7 +2,7 @@ desc 'Lists all of the address formatting rules that are unique'
 task :list_unique_formatting_rules do
   require 'local_postal'
 
-  files = Dir[File.join(LocalPostal::Config.root, 'formats', '*.json')]
+  files = Dir[File.join(LocalPostal.root, 'config', 'formats', '*.json')]
   formats = files.map {|file| LocalPostal::Format.from_json(file) }
 
   rules = {

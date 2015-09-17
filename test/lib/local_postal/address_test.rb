@@ -1,6 +1,18 @@
 require 'test_helper'
 
 class LocalPostal::AddressTest < Minitest::Test
+  def test_country_assigns_format
+    address = LocalPostal::Address.new(country: 'United States')
+    assert_kind_of LocalPostal::Format, address.format
+    assert_equal 'en', address.format.locale
+
+    address.country = 'Spain'
+    assert_equal 'es', address.format.locale
+
+    address.country = nil
+    assert_nil address.format
+  end
+
   def test_country_code_when_country_is_a_full_name
     address = LocalPostal::Address.new(country: 'United States')
 
@@ -36,25 +48,23 @@ class LocalPostal::AddressTest < Minitest::Test
     lines = address.lines
 
     assert_equal address.name, lines[0]
-    assert_equal address.department, lines[1]
-    assert_equal address.company, lines[2]
-    assert_equal address.street_address, lines[3]
-    assert_equal address.secondary_address, lines[4]
-    assert_equal address.city_line, lines[5]
-    assert_equal address.country, lines[6]
+    assert_equal address.company, lines[1]
+    assert_equal address.street_address, lines[2]
+    assert_equal address.secondary_address, lines[3]
+    assert_equal "#{address.city}, #{address.region} #{address.postal_code}", lines[4]
+    assert_equal address.country, lines[5]
   end
 
   def test_lines_when_some_fields_are_empty
     address = fake_address
-    address.department = nil
+    address.company = nil
     address.secondary_address = ''
     lines = address.lines
 
     assert_equal address.name, lines[0]
-    assert_equal address.company, lines[1]
-    assert_equal address.street_address, lines[2]
-    assert_equal address.city_line, lines[3]
-    assert_equal address.country, lines[4]
+    assert_equal address.street_address, lines[1]
+    assert_equal "#{address.city}, #{address.region} #{address.postal_code}", lines[2]
+    assert_equal address.country, lines[3]
   end
 
   private
@@ -62,7 +72,6 @@ class LocalPostal::AddressTest < Minitest::Test
   def fake_address
     LocalPostal::Address.new(
       name: Faker::Name.name,
-      department: Faker::Commerce.department,
       company: Faker::Company.name,
       street_address: Faker::Address.street_address,
       secondary_address: Faker::Address.secondary_address,
