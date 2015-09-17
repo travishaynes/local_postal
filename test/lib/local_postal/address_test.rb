@@ -1,19 +1,6 @@
 require 'test_helper'
 
 class LocalPostal::AddressTest < Minitest::Test
-  def test_initializer_sets_attributes
-    address = LocalPostal::Address.new(name: 'Travis')
-
-    assert_equal 'Travis', address.name
-  end
-
-  def test_attributes_can_be_set_after_initializing
-    address = LocalPostal::Address.new(name: 'Travis')
-    address.name = 'John'
-
-    assert_equal 'John', address.name
-  end
-
   def test_country_code_when_country_is_a_full_name
     address = LocalPostal::Address.new(country: 'United States')
 
