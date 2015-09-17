@@ -20,6 +20,10 @@ class LocalPostal::FormatTest < Minitest::Test
     assert_raises(ArgumentError) { LocalPostal::Format.from_country_code(:USA) }
   end
 
+  def test_from_country_code_with_unsupported_code
+    assert_raises(ArgumentError) { LocalPostal::Format.from_country_code(:XX) }
+  end
+
   def test_variables
     f = LocalPostal::Format.from_country_code(:US)
 

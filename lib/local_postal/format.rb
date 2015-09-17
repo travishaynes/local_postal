@@ -31,13 +31,16 @@ class LocalPostal::Format
   #
   # @param [String] code The 2-character country code.
   # @raise [ArgumentError] If the code is not exactly 2 characters.
+  # @raise [ArgumentError] If the supplied country code is not supported.
   # @return [LocalPostal::Format] The new LocalPostal::Format instance.
   def self.from_country_code(code)
     code = "#{code}".upcase
 
-    fail ArgumentError, 'code must be 2 characters', caller if code.length != 2
+    fail ArgumentError, "#{code} is an invalid code", caller if code.length != 2
 
     path = File.join(LocalPostal::Config.root, 'formats', "#{code}.json")
+
+    fail ArgumentError, "#{code} unsupported", caller unless File.file?(path)
 
     from_json(path)
   end
