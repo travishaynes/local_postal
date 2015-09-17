@@ -45,6 +45,14 @@ class LocalPostal::Format
     from_json(path)
   end
 
+  # Applies the formatting to the supplied values.
+  #
+  # @param [Hash] values The address' field values.
+  # @return [String] The address properly formatted for its country.
+  def apply(values)
+    formatted_string % values
+  end
+
   # Converts the format provided in the JSON files into a valid Ruby formatted
   # String that can be parsed using the modulus operator and a Hash.
   def formatted_string

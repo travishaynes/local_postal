@@ -22,7 +22,7 @@ class LocalPostal::Address
   #
   # @return [Array] The address lines.
   def lines
-    address = format.formatted_string % formatting_values
+    address = format.apply(formatting_values)
     address.split("\n").reject {|line| line.strip.empty? } + [country]
   end
 
