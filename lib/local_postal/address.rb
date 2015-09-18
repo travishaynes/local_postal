@@ -19,9 +19,16 @@ class LocalPostal::Address
   def country_code
     cc = carmen_country
 
-    return if cc.nil?
+    cc ? "#{cc.code.upcase}" : nil
+  end
 
-    cc.code.upcase if cc.code.is_a?(String)
+  # The countries full name.
+  #
+  # @return [String] Name of the country.
+  def country_name
+    cc = carmen_country
+
+    cc ? "#{cc.name}" : ''
   end
 
   # The address' lines as they should appear on the parcel.
@@ -29,11 +36,11 @@ class LocalPostal::Address
   # @return [Array] The address lines.
   def lines
     address = format.apply(formatting_values)
-    country_name = Carmen::Country.coded(country_code).name.upcase
-    address.split("\n").reject {|line| line.strip.empty? } + [country_name]
+    lines = address.split("\n").reject {|line| line.strip.empty? }
+    lines << country_name.upcase
   end
 
-  # Sets the country and automatically assigns the correct format for that it
+  # Sets the country and automatically assigns the correct format that it
   # belongs to.
   #
   # @param [String] value The name of the country.
@@ -74,7 +81,7 @@ class LocalPostal::Address
     format.required_fields.each do |field|
       field_name = self.class.formatting_variables_lookup_table[field.to_sym]
       value = public_send(field_name)
-      errors.add field_name, 'is required' if "#{value}".empty?
+      errors.add(field_name, 'is required') if "#{value}".empty?
     end
   end
 
