@@ -114,10 +114,9 @@ class LocalPostal::Address
     end.to_h
   end
 
-  # Looks the country up using Carmen and returns its 2-character code when
-  # available.
+  # Looks the country up using Carmen.
   #
-  # @return [String] The country code or nil when unavailable.
+  # @return [Carmen::Country] The country or nil.
   def carmen_country
     return unless country.is_a?(String)
 
