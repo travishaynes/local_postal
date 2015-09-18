@@ -57,7 +57,7 @@ class LocalPostal::Format
       [key, value]
     end
 
-    formatted_string % values.to_h
+    formatted_string % Hash[values]
   end
 
   # Converts the format provided in the JSON files into a valid Ruby formatted

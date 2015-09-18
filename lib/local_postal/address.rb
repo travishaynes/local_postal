@@ -107,11 +107,13 @@ class LocalPostal::Address
   #
   # @return [Hash] Values that can be used to format the address.
   def formatting_values
-    self.class.formatting_variables_lookup_table.map do |key, value|
+    values = self.class.formatting_variables_lookup_table.map do |key, value|
       value = public_send(value) unless value.nil?
 
       [key, value]
-    end.to_h
+    end
+
+    Hash[values]
   end
 
   # Looks the country up using Carmen.
