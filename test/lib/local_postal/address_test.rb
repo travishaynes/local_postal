@@ -53,7 +53,7 @@ class LocalPostal::AddressTest < Minitest::Test
     assert_equal address.street_address, lines[2]
     assert_equal address.secondary_address, lines[3]
     assert_equal city_line.upcase, lines[4]
-    assert_equal address.country, lines[5]
+    assert_equal 'UNITED STATES', lines[5]
   end
 
   def test_lines_when_some_fields_are_empty
@@ -66,7 +66,7 @@ class LocalPostal::AddressTest < Minitest::Test
     assert_equal address.name, lines[0]
     assert_equal address.street_address, lines[1]
     assert_equal city_line.upcase, lines[2]
-    assert_equal address.country, lines[3]
+    assert_equal 'UNITED STATES', lines[3]
   end
 
   def test_validates_required_fields
@@ -102,6 +102,14 @@ class LocalPostal::AddressTest < Minitest::Test
 
     address.postal_code = 'AX-22131'
     assert address.valid?
+  end
+
+  def test_full_country_name_used
+    address = fake_address
+    assert_equal 'UNITED STATES', address.lines.last
+
+    address.country = 'CA'
+    assert_equal 'CANADA', address.lines.last
   end
 
   private

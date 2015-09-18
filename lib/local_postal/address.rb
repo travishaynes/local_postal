@@ -29,7 +29,8 @@ class LocalPostal::Address
   # @return [Array] The address lines.
   def lines
     address = format.apply(formatting_values)
-    address.split("\n").reject {|line| line.strip.empty? } + [country.upcase]
+    country_name = Carmen::Country.coded(country_code).name.upcase
+    address.split("\n").reject {|line| line.strip.empty? } + [country_name]
   end
 
   # Sets the country and automatically assigns the correct format for that it
