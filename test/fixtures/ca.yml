@@ -1,0 +1,42 @@
+- attributes:
+    name: John Jones
+    street_address: 10–123 1/2 Main Street NW
+    city: Montreal
+    region: QC
+    postal_code: H3Z 2Y7
+    country: Canada
+  lines:
+    - JOHN JONES
+    - 10–123 1/2 MAIN STREET NW
+    - MONTREAL QC H3Z 2Y7
+    - CANADA
+
+- attributes:
+    name: John Jones
+    street_address: 1425 JAMES ST
+    secondary_address: PO BOX 4001 STN A
+    city: Victoria
+    region: BC
+    postal_code: V8X 3X4
+    country: CA
+  lines:
+    - JOHN JONES
+    - 1425 JAMES ST
+    - PO BOX 4001 STN A
+    - VICTORIA BC V8X 3X4
+    - CANADA
+
+- attributes:
+    name: Claud M Untel
+    street_address: Site 6 Comp 10
+    secondary_address: RR 8 MSC Millarville RR
+    city: Millarville
+    region: AB
+    postal_code: T0L 1K0
+    country: Canada
+  lines:
+    - CLAUD M UNTEL
+    - SITE 6 COMP 10
+    - RR 8 MSC MILLARVILLE RR
+    - MILLARVILLE AB T0L 1K0
+    - CANADA
