@@ -1,0 +1,30 @@
+- attributes:
+    name: ABC Movers
+    street_address: 1500 E Main Ave
+    secondary_address: Ste 201
+    city: Springfield
+    region: va
+    postal_code: 22162–1010
+    country: United States
+  lines:
+    - ABC Movers
+    - 1500 E Main Ave
+    - Ste 201
+    - SPRINGFIELD, VA 22162–1010
+    - UNITED STATES
+
+- attributes:
+    name: John Doe
+    company: ABC Company
+    street_address: 1401 Main St
+    secondary_address:
+    city: Falls Church
+    region: VA
+    postal_code: 22042–1441
+    country: US
+  lines:
+    - John Doe
+    - ABC Company
+    - 1401 Main St
+    - FALLS CHURCH, VA 22042–1441
+    - UNITED STATES
