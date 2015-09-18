@@ -82,6 +82,28 @@ class LocalPostal::AddressTest < Minitest::Test
     assert_includes address.errors.full_messages, 'Street address is required'
   end
 
+  def test_validates_postal_code
+    address = fake_address
+
+    address.postal_code = 'x'
+    refute address.valid?
+    assert_includes address.errors.full_messages, 'Postal code is invalid'
+
+    address.postal_code = '90210'
+    assert address.valid?
+  end
+
+  def test_validates_postal_code_prefix
+    address = fake_address
+
+    address.country = 'AX'
+    refute address.valid?
+    assert_includes address.errors.full_messages, 'Postal code has an invalid prefix'
+
+    address.postal_code = 'AX-22131'
+    assert address.valid?
+  end
+
   private
 
   def fake_address

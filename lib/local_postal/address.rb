@@ -7,8 +7,11 @@ class LocalPostal::Address
 
   attr_reader :format, :country
 
+  validates :country, presence: true
+
   validate :has_required_fields
-  validate :has_valid_postal_code
+  validate :has_valid_postal_code_pattern, unless: -> { postal_code.nil? }
+  validate :has_valid_postal_code_prefix, unless: -> { postal_code.nil? }
 
   # The 2-character ISO 3166 country code for this address.
   #
@@ -74,11 +77,22 @@ class LocalPostal::Address
     end
   end
 
-  # Validates the postal code.
-  def has_valid_postal_code
+  # Validates that the postal code is in the correct format.
+  def has_valid_postal_code_pattern
     return unless format.is_a?(LocalPostal::Format)
 
-    # TODO: validate postal code
+    matches = Regexp.new(format.postal_code_pattern).match(postal_code)
+
+    errors.add(:postal_code, 'is invalid') unless matches.to_a.length > 0
+  end
+
+  # Validates that the postal code has the correct prefix, when required.
+  def has_valid_postal_code_prefix
+    return unless format.is_a?(LocalPostal::Format)
+    return if "#{format.postal_code_prefix}".empty?
+    return if postal_code.start_with?("#{format.postal_code_prefix}")
+
+    errors.add(:postal_code, 'has an invalid prefix')
   end
 
   # Maps the address fields to formatting variables.

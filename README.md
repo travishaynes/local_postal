@@ -72,6 +72,34 @@ Which will output:
     CHICAGO, IL 60620
     UNITED STATES
 
+`LocalPostal::Address` is an `ActiveModel::Model` and has some field
+validations based on the shipping rules for its country.
+
+```ruby
+address = LocalPostal::Address.new(
+  name: nil,
+  street_address: nil,
+  city: 'Los Angeles',
+  region: 'CA',
+  postal_code: 'xxx',
+  country: 'United States'
+)
+
+address.valid? # => false
+puts address.errors.full_messages
+```
+
+Gives you the following errors:
+
+    Name is required
+    Street address is required
+    Postal code is invalid
+
+**NOTICE:** This does not check that the address is actually deliverable. It
+only checks that all the fields are required, and that the postal code matches
+a pattern. For example, if the city was `Bevery Hills`, and the postal code was
+`12345` then `address.valid?` would return `true`, even though the address is
+physically invalid.
 
 ## Development
 
