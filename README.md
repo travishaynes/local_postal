@@ -97,7 +97,7 @@ Gives you the following errors:
 
 **NOTICE:** This does not check that the address is actually deliverable. It
 only checks that all the required fields are present, and that the postal code
-matches a pattern. For example, if the city was `Bevery Hills`, and the postal
+matches a pattern. For example, if the city was `Beverly Hills`, and the postal
 code was `12345` then `address.valid?` would still return `true`, even though
 the address is physically invalid.
 
