@@ -62,6 +62,8 @@ class LocalPostal::Format
 
   # Converts the format provided in the JSON files into a valid Ruby formatted
   # String that can be parsed using the modulus operator and a Hash.
+  #
+  # @return [String] A formatted string.
   def formatted_string
     format.dup.tap do |str|
       variables.each {|v| str.gsub!("%#{v}", "%{#{v}}") }
